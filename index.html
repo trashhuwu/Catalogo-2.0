@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catálogo de guadañas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F4EE; --surface:#FFFFFF; --ink:#18221C; --muted:#5A675F; --line:#D5DDD3;
+  --green:#2C5A38; --green-ink:#FFFFFF; --hay:#E0A92B; --hay-ink:#1F1706; --focus:#1B5FD1;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121A15; --surface:#1B261F; --ink:#EAF0E9; --muted:#9CAAA0; --line:#2E3C33;
+    --green:#6FBF82; --green-ink:#0F1B13; --hay:#E8B544; --hay-ink:#1F1706; --focus:#7FB0FF; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121A15; --surface:#1B261F; --ink:#EAF0E9; --muted:#9CAAA0; --line:#2E3C33;
+  --green:#6FBF82; --green-ink:#0F1B13; --hay:#E8B544; --hay-ink:#1F1706; --focus:#7FB0FF; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;margin:0;line-height:1.08}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.hero{padding:44px 0 28px}
+.brand{font-weight:600;color:var(--muted);font-size:15px;margin-bottom:18px}
+h1{font-size:clamp(34px,6.4vw,64px);font-weight:800;letter-spacing:-.02em;max-width:15ch}
+.lead{color:var(--muted);max-width:52ch;margin:14px 0 26px;font-size:18px}
+.lines{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px}
+.line{appearance:none;text-align:left;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:16px 18px;cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
+.line strong{display:block;font:700 20px "Bricolage Grotesque",sans-serif}
+.line span{color:var(--muted);font-size:14px}
+.line[aria-pressed="true"]{border-color:var(--green);background:var(--green);color:var(--green-ink)}
+.line[aria-pressed="true"] span{color:inherit;opacity:.85}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0 6px;border-top:1px solid var(--line);margin-top:26px}
+.bar input,.bar select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+.bar input{flex:1 1 220px}
+.count{color:var(--muted);font-size:14px;margin:8px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding-bottom:56px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card[data-line="original"]{border-top:5px solid var(--green)}
+.card[data-line="economica"]{border-top:5px solid var(--hay)}
+.photo{position:relative;aspect-ratio:4/3;background:#fff;display:grid;place-items:center;color:#5A675F;font:700 40px "Bricolage Grotesque",sans-serif;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:contain}
+.refbadge{position:absolute;left:8px;bottom:8px;background:rgba(24,34,28,.88);color:#fff;font:600 12px "Public Sans",sans-serif;padding:4px 8px;border-radius:6px}
+.thumbs{display:flex;gap:8px;padding:8px 16px 0}
+.th{appearance:none;width:48px;height:48px;padding:2px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer}
+.th img{width:100%;height:100%;object-fit:contain;display:block}
+.body{padding-top:12px}
+.body{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tag{align-self:flex-start;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px}
+.original .tag,.card[data-line="original"] .tag{background:var(--green);color:var(--green-ink)}
+.card[data-line="economica"] .tag{background:var(--hay);color:var(--hay-ink)}
+h3{font-size:21px;font-weight:700}
+.brandname{color:var(--muted);font-size:14px;margin-top:-6px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px}
+dt{color:var(--muted)} dd{margin:0;font-weight:500}
+.feat{margin:0;padding-left:18px;font-size:14px}
+.feat li{margin:2px 0}
+details{font-size:14px}
+summary{cursor:pointer;font-weight:600;color:var(--green);min-height:24px}
+details p{margin:6px 0 0;color:var(--muted)}
+.price{font:700 20px "Bricolage Grotesque",sans-serif;margin-top:auto}
+.btn{display:block;text-align:center;text-decoration:none;background:var(--green);color:var(--green-ink);font-weight:600;padding:12px;border-radius:10px;min-height:44px}
+.btn:hover{filter:brightness(1.08)}
+.empty{grid-column:1/-1;padding:40px 0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:14px}
+@media (max-width:520px){.lines{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="brand">Guadañas y equipos agro</div>
+  <h1>La guadaña justa para cada trabajo y cada presupuesto</h1>
+  <p class="lead">Compara equipos de línea original y de línea económica. Escribe por WhatsApp y te confirmamos precio y disponibilidad.</p>
+  <div class="lines" role="group" aria-label="Elegir línea">
+    <button class="line" data-v="original" aria-pressed="false"><strong>Línea original</strong><span>Marcas reconocidas, repuestos y garantía</span></button>
+    <button class="line" data-v="economica" aria-pressed="false"><strong>Línea económica</strong><span>Menor precio para uso ocasional</span></button>
+  </div>
+  <div class="bar">
+    <input id="q" type="search" placeholder="Buscar por marca o modelo" aria-label="Buscar">
+    <select id="brand" aria-label="Marca"><option value="">Todas las marcas</option></select>
+    <select id="motor" aria-label="Tipo de motor"><option value="">Todos los motores</option></select>
+  </div>
+</div></header>
+<main class="wrap">
+  <p class="count" id="count" aria-live="polite"></p>
+  <section class="grid" id="grid"></section>
+</main>
+<footer><div class="wrap">Precios y disponibilidad sujetos a confirmación. Las fotos son ilustrativas.</div></footer>
+<script src="catalogo.js"></script>
+</body>
+</html>
